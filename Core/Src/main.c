@@ -133,23 +133,23 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3B, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3B, 1, &tempval, 1, 50);
     accx = tempval<<8;
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3C, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3C, 1, &tempval, 1, 50);
     accx = accx|tempval;
     accx = accx/16348;
 
 
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3D, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3D, 1, &tempval, 1, 50);
     accy = tempval<<8;
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3E, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3E, 1, &tempval, 1, 50);
     accy = accy|tempval;
     accy = accy/16348;
 
 
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3F, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3F, 1, &tempval, 1, 50);
     accz = tempval<<8;
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x40, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x40, 1, &tempval, 1, 50);
     accz = accz|tempval;
     accz = accz/16348;
 
@@ -160,21 +160,21 @@ int main(void)
     currentTime = HAL_GetTick();
     elapsedTime = (currentTime - previousTime)/1000;
 
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x43, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x43, 1, &tempval, 1, 50);
     gyrox = tempval<<8;
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x44, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x44, 1, &tempval, 1, 50);
     gyrox = gyrox|tempval;
 
 
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x45, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x45, 1, &tempval, 1, 50);
     gyroy = tempval<<8;
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x46, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x46, 1, &tempval, 1, 50);
     gyroy = gyroy|tempval;
 
 
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x47, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x47, 1, &tempval, 1, 50);
     gyroz = tempval<<8;
-    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x48, 1, &tempval, 1, 50);
+    HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x48, 1, &tempval, 1, 50);
     gyroz = gyroz|tempval;
 
     gyrox = gyrox/131;
@@ -486,21 +486,21 @@ void calculate_IMU_error(){
 	GyroErrorY = 0;
 	GyroErrorZ = 0;
 	while (c<200){
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3B, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3B, 1, &tempval, 1, 50);
 		accx = tempval<<8;
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3C, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3C, 1, &tempval, 1, 50);
 		accx = accx|tempval;
 
 
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3D, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3D, 1, &tempval, 1, 50);
 		accy = tempval<<8;
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3E, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3E, 1, &tempval, 1, 50);
 		accy = accy|tempval;
 
 
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x3F, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x3F, 1, &tempval, 1, 50);
 		accz = tempval<<8;
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x40, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x40, 1, &tempval, 1, 50);
 		accz = accz|tempval;
 
 		AccErrorX = AccErrorX + ((atan((accy) / sqrt(pow((accx), 2) + pow((accz), 2))) * 180 / PI));
@@ -514,19 +514,19 @@ void calculate_IMU_error(){
 
 	c = 0;
 	while(c<200){
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x43, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x43, 1, &tempval, 1, 50);
 		gyrox = tempval<<8;
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x44, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x44, 1, &tempval, 1, 50);
 		gyrox = gyrox|tempval;
 
 
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x45, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x45, 1, &tempval, 1, 50);
 		gyroy = tempval<<8;
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x46, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x46, 1, &tempval, 1, 50);
 		gyroy = gyroy|tempval;
 
 
-		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x47, 1, &tempval, 1, 50);
+		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR<<1|0x01, 0x47, 1, &tempval, 1, 50);
 		gyroz = tempval<<8;
 		HAL_I2C_Mem_Read(&hi2c3, MPU_ADDR, 0x48, 1, &tempval, 1, 50);
 		gyroz = gyroz|tempval;
